@@ -18,6 +18,10 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->enum('gender', ['Pria', 'Wanita'])->nullable();
+            $table->string('image')->nullable();
+            $table->text('address')->nullable();
+            $table->string('whatsapp_number')->nullable();
             $table->timestamps();
         });
 
