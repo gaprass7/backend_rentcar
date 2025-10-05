@@ -1,0 +1,36 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Laravel Car API",
+        "description": "API Documentation for Car Management with Swagger",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000/api",
+            "description": "Local API Server"
+        }
+    ],
+    "paths": {
+        "/cars": {
+            "get": {
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "Get list of cars",
+                "operationId": "35a83fd1dd6f38f7802c9474944713c6",
+                "responses": {
+                    "200": {
+                        "description": "List of cars"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Cars",
+            "description": "Cars"
+        }
+    ]
+}
