@@ -8,6 +8,9 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\PaymentMethodController;
+use App\Http\Controllers\Admin\RentalController;
+use App\Http\Controllers\Admin\AddonController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +29,5 @@ Route::apiResource('cars', CarController::class);
 Route::apiResource('sliders', SliderController::class);
 Route::apiResource('users', UserController::class);
 Route::apiResource('payment-methods', PaymentMethodController::class);
+Route::apiResource('rentals', RentalController::class);
+Route::apiResource('addons', AddonController::class);

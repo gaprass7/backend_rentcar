@@ -12,6 +12,337 @@
         }
     ],
     "paths": {
+        "/addons": {
+            "get": {
+                "tags": [
+                    "Addons"
+                ],
+                "summary": "Menampilkan daftar semua addon",
+                "description": "Menampilkan daftar semua addon dengan pagination.",
+                "operationId": "c055b1a4dc765f68bc0793a22b53b678",
+                "responses": {
+                    "200": {
+                        "description": "Berhasil menampilkan data addon",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Asuransi Tambahan"
+                                                    },
+                                                    "price": {
+                                                        "type": "number",
+                                                        "example": 50000
+                                                    },
+                                                    "type": {
+                                                        "type": "string",
+                                                        "example": "insurance"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "links": {
+                                            "type": "object"
+                                        },
+                                        "meta": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Addons"
+                ],
+                "summary": "Menambahkan addon baru",
+                "description": "Membuat addon baru dengan nama, harga, dan tipe tertentu.",
+                "operationId": "cdffddbe623a1ccd278b9955edabe3dd",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "price",
+                                    "type"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Driver Tambahan"
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "example": 150000
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "driver",
+                                            "fuel",
+                                            "insurance",
+                                            "additional_service"
+                                        ]
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Addon berhasil dibuat",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Addon created successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 10
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Driver Tambahan"
+                                                },
+                                                "price": {
+                                                    "type": "number",
+                                                    "example": 150000
+                                                },
+                                                "type": {
+                                                    "type": "string",
+                                                    "example": "driver"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validasi gagal"
+                    }
+                }
+            }
+        },
+        "/addons/{id}": {
+            "get": {
+                "tags": [
+                    "Addons"
+                ],
+                "summary": "Menampilkan detail addon berdasarkan ID",
+                "operationId": "2ae9a3c366cd0092ec2b1bb32fc7bca5",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID dari addon",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Berhasil menampilkan data addon",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Asuransi Tambahan"
+                                        },
+                                        "price": {
+                                            "type": "number",
+                                            "example": 50000
+                                        },
+                                        "type": {
+                                            "type": "string",
+                                            "example": "insurance"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Addon tidak ditemukan"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Addons"
+                ],
+                "summary": "Memperbarui data addon",
+                "operationId": "d3fe9d40a3f36ccb8232a8af033b2d05",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID addon yang akan diperbarui",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "price",
+                                    "type"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "BBM Tambahan"
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "example": 75000
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "driver",
+                                            "fuel",
+                                            "insurance",
+                                            "additional_service"
+                                        ]
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Addon berhasil diperbarui",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Addon updated successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "BBM Tambahan"
+                                                },
+                                                "price": {
+                                                    "type": "number",
+                                                    "example": 75000
+                                                },
+                                                "type": {
+                                                    "type": "string",
+                                                    "example": "fuel"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Addon tidak ditemukan"
+                    },
+                    "422": {
+                        "description": "Validasi gagal"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Addons"
+                ],
+                "summary": "Menghapus addon berdasarkan ID",
+                "description": "Menghapus satu data addon berdasarkan ID.",
+                "operationId": "63969b8f59f8ad4f987cd59555e2318c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID dari addon",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Addon berhasil dihapus",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Addon deleted successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Addon tidak ditemukan"
+                    }
+                }
+            }
+        },
         "/cars": {
             "get": {
                 "tags": [
@@ -623,6 +954,208 @@
                 }
             }
         },
+        "/rentals": {
+            "get": {
+                "tags": [
+                    "Rentals"
+                ],
+                "summary": "Menampilkan daftar penyewaan",
+                "description": "Mengambil daftar semua data rental dengan relasi mobil, metode pembayaran, dan pembayaran.",
+                "operationId": "08faa774dcbad8ea942045b1b69e00ef",
+                "responses": {
+                    "200": {
+                        "description": "Berhasil mengambil data rental",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "car": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer",
+                                                                "example": 5
+                                                            },
+                                                            "name": {
+                                                                "type": "string",
+                                                                "example": "Toyota Avanza"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    "paymentMethod": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer",
+                                                                "example": 2
+                                                            },
+                                                            "type": {
+                                                                "type": "string",
+                                                                "example": "bank_transfer"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    "payments": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "id": {
+                                                                    "type": "integer",
+                                                                    "example": 12
+                                                                },
+                                                                "amount": {
+                                                                    "type": "number",
+                                                                    "format": "float",
+                                                                    "example": 250000
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    },
+                                                    "total_fee": {
+                                                        "type": "number",
+                                                        "format": "float",
+                                                        "example": 500000
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "links": {
+                                            "type": "object"
+                                        },
+                                        "meta": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/rentals/{id}": {
+            "get": {
+                "tags": [
+                    "Rentals"
+                ],
+                "summary": "Menampilkan detail penyewaan berdasarkan ID",
+                "description": "Menampilkan detail satu penyewaan lengkap dengan perhitungan biaya.",
+                "operationId": "9f40a36b2cf415de4a994ef704083186",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID Rental",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Berhasil mengambil detail rental",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rental": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "car": {
+                                                    "properties": {
+                                                        "name": {
+                                                            "type": "string",
+                                                            "example": "Avanza 2023"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "user": {
+                                                    "properties": {
+                                                        "name": {
+                                                            "type": "string",
+                                                            "example": "John Doe"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "addons": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "name": {
+                                                                "type": "string",
+                                                                "example": "Asuransi tambahan"
+                                                            },
+                                                            "pivot": {
+                                                                "properties": {
+                                                                    "total_price": {
+                                                                        "type": "number",
+                                                                        "example": 50000
+                                                                    }
+                                                                },
+                                                                "type": "object"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "rentalFeeDetails": {
+                                            "properties": {
+                                                "base_rental_fee": {
+                                                    "type": "number",
+                                                    "example": 300000
+                                                },
+                                                "additional_fee": {
+                                                    "type": "number",
+                                                    "example": 20000
+                                                },
+                                                "addon_total_fee": {
+                                                    "type": "number",
+                                                    "example": 50000
+                                                },
+                                                "late_fee": {
+                                                    "type": "number",
+                                                    "example": 10000
+                                                },
+                                                "total_fee": {
+                                                    "type": "number",
+                                                    "example": 380000
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Data rental tidak ditemukan"
+                    }
+                }
+            }
+        },
         "/sliders": {
             "get": {
                 "tags": [
@@ -838,6 +1371,14 @@
         }
     },
     "tags": [
+        {
+            "name": "Addons",
+            "description": "API untuk manajemen data Addon (fitur tambahan dalam penyewaan mobil)"
+        },
+        {
+            "name": "Rentals",
+            "description": "API untuk manajemen data penyewaan mobil"
+        },
         {
             "name": "Cars",
             "description": "Cars"
