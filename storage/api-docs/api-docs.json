@@ -431,6 +431,153 @@
                     }
                 }
             }
+        },
+        "/sliders": {
+            "get": {
+                "tags": [
+                    "Sliders"
+                ],
+                "summary": "Get list of sliders",
+                "operationId": "c7626784459eaf67ab0b11d122284a8a",
+                "responses": {
+                    "200": {
+                        "description": "List of sliders"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Sliders"
+                ],
+                "summary": "Create new slider",
+                "operationId": "268ea493c72e9b0ae5d2e1b95c20c46f",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "image"
+                                ],
+                                "properties": {
+                                    "image": {
+                                        "description": "Upload image file (jpg, jpeg, png, webp)",
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Sliders created successfully"
+                    }
+                }
+            }
+        },
+        "/sliders/{id}": {
+            "get": {
+                "tags": [
+                    "Sliders"
+                ],
+                "summary": "Get Sliders detail",
+                "operationId": "cdabbddc6e8f3ce9834a9372b97559ce",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sliders detail"
+                    },
+                    "404": {
+                        "description": "Sliders not found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Sliders"
+                ],
+                "summary": "Update slider existing slider (use _method=PUT)",
+                "operationId": "76f21d8166a2e307637762bb9554944f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "image",
+                                    "_method"
+                                ],
+                                "properties": {
+                                    "_method": {
+                                        "type": "string",
+                                        "example": "PUT"
+                                    },
+                                    "image": {
+                                        "description": "Upload image file (jpg, jpeg, png, webp)",
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Slider updated successfully"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Sliders"
+                ],
+                "summary": "Delete slider",
+                "operationId": "0c7c2683bf9640b0d63a92adf9509921",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Slider ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Slider deleted successfully"
+                    },
+                    "404": {
+                        "description": "Slider not found"
+                    }
+                }
+            }
         }
     },
     "tags": [
@@ -441,6 +588,10 @@
         {
             "name": "Categories",
             "description": "Categories"
+        },
+        {
+            "name": "Sliders",
+            "description": "Sliders"
         }
     ]
 }
