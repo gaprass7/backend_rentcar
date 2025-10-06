@@ -9,10 +9,16 @@ class Car extends Model
 {
     protected $guarded = [];
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+
     protected function image(): Attribute
     {
         return Attribute::make(
-            get: fn($image) => url('/storage/cars/' . $image),
+            get: fn($image) => $image ? url('/storage/cars/' . $image) : null,
         );
     }
 }

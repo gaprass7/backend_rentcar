@@ -24,6 +24,412 @@
                         "description": "List of cars"
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "Create new car",
+                "operationId": "7efaf16ec0b383e6c0032d761f953fed",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "category_id",
+                                    "brand",
+                                    "model",
+                                    "license_plate",
+                                    "transmission",
+                                    "year",
+                                    "daily_rate",
+                                    "passenger_capacity",
+                                    "fuel_type"
+                                ],
+                                "properties": {
+                                    "category_id": {
+                                        "description": "ID kategori mobil",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "brand": {
+                                        "type": "string",
+                                        "example": "Toyota"
+                                    },
+                                    "model": {
+                                        "type": "string",
+                                        "example": "Avanza"
+                                    },
+                                    "license_plate": {
+                                        "type": "string",
+                                        "example": "B1234XYZ"
+                                    },
+                                    "transmission": {
+                                        "type": "string",
+                                        "enum": [
+                                            "automatic",
+                                            "manual"
+                                        ]
+                                    },
+                                    "year": {
+                                        "type": "integer",
+                                        "example": 2022
+                                    },
+                                    "daily_rate": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 500000
+                                    },
+                                    "passenger_capacity": {
+                                        "type": "integer",
+                                        "example": 7
+                                    },
+                                    "fuel_type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "gasoline",
+                                            "diesel",
+                                            "electric"
+                                        ]
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "enum": [
+                                            "available",
+                                            "rented",
+                                            "maintenance"
+                                        ],
+                                        "example": "available"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Mobil nyaman untuk keluarga"
+                                    },
+                                    "penalty_rate_per_day": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 100000
+                                    },
+                                    "image": {
+                                        "description": "Upload image file (jpg, jpeg, png, webp)",
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Car created successfully"
+                    }
+                }
+            }
+        },
+        "/cars/{id}": {
+            "get": {
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "Get car detail",
+                "operationId": "860a6c23f309b6d8e6d7cd3a556ffe03",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Car detail"
+                    },
+                    "404": {
+                        "description": "Car not found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "Update existing car (use _method=PUT)",
+                "operationId": "a36f2b47065116a65aa5c1ca0b21bec8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "_method"
+                                ],
+                                "properties": {
+                                    "_method": {
+                                        "type": "string",
+                                        "example": "PUT"
+                                    },
+                                    "category_id": {
+                                        "description": "ID kategori mobil",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "brand": {
+                                        "type": "string",
+                                        "example": "Honda"
+                                    },
+                                    "model": {
+                                        "type": "string",
+                                        "example": "Civic"
+                                    },
+                                    "license_plate": {
+                                        "type": "string",
+                                        "example": "B5678ABC"
+                                    },
+                                    "transmission": {
+                                        "type": "string",
+                                        "enum": [
+                                            "automatic",
+                                            "manual"
+                                        ]
+                                    },
+                                    "year": {
+                                        "type": "integer",
+                                        "example": 2020
+                                    },
+                                    "daily_rate": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 400000
+                                    },
+                                    "passenger_capacity": {
+                                        "type": "integer",
+                                        "example": 5
+                                    },
+                                    "fuel_type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "gasoline",
+                                            "diesel",
+                                            "electric"
+                                        ]
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "enum": [
+                                            "available",
+                                            "rented",
+                                            "maintenance"
+                                        ]
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Sedan nyaman"
+                                    },
+                                    "penalty_rate_per_day": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 80000
+                                    },
+                                    "image": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Car updated successfully"
+                    },
+                    "404": {
+                        "description": "Car not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "Delete car",
+                "operationId": "cbff17b3cf759e6d484d35f2ea03ce69",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Car deleted successfully"
+                    },
+                    "404": {
+                        "description": "Car not found"
+                    }
+                }
+            }
+        },
+        "/categories": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Get list of categories",
+                "operationId": "0d9f6f774f1b480b5318196b0ce0dc72",
+                "responses": {
+                    "200": {
+                        "description": "List of categories"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Create new categories",
+                "operationId": "d566fee2a2234738bf97d6ef32889c37",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Truck"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Categories created successfully"
+                    }
+                }
+            }
+        },
+        "/categories/{id}": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Get categories detail",
+                "operationId": "875d4f0851994f12ca2b94f007a0a874",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Categories detail"
+                    },
+                    "404": {
+                        "description": "Categories not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Update categories",
+                "operationId": "d2c95300f3f0e703cd4d4b3763e6e010",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Truck"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Categories updated successfully"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Delete categories",
+                "operationId": "198126e145163c3c4a6d3ada0a7c3f07",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Categories deleted successfully"
+                    },
+                    "404": {
+                        "description": "Categories not found"
+                    }
+                }
             }
         }
     },
@@ -31,6 +437,10 @@
         {
             "name": "Cars",
             "description": "Cars"
+        },
+        {
+            "name": "Categories",
+            "description": "Categories"
         }
     ]
 }
