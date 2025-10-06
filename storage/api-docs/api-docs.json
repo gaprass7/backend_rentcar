@@ -432,6 +432,197 @@
                 }
             }
         },
+        "/payment-methods": {
+            "get": {
+                "tags": [
+                    "Payment Methods"
+                ],
+                "summary": "Get list of payment methods",
+                "operationId": "d6dd0fed2184f63edde29e66ed91de2e",
+                "responses": {
+                    "200": {
+                        "description": "List of payment methods"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Payment Methods"
+                ],
+                "summary": "Create new payment method",
+                "operationId": "8dafe61a9490dfd9ff32530e3197450b",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "type"
+                                ],
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "bank_transfer",
+                                            "qris"
+                                        ],
+                                        "example": "bank_transfer"
+                                    },
+                                    "account_number": {
+                                        "type": "string",
+                                        "example": "1234567890"
+                                    },
+                                    "account_name": {
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "bank_name": {
+                                        "type": "string",
+                                        "example": "BCA"
+                                    },
+                                    "image": {
+                                        "description": "Upload payment image (png, jpg, webp)",
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Payment method created successfully"
+                    },
+                    "404": {
+                        "description": "Payment method not found"
+                    }
+                }
+            }
+        },
+        "/payment-methods/{id}": {
+            "get": {
+                "tags": [
+                    "Payment Methods"
+                ],
+                "summary": "Get payment method detail",
+                "operationId": "268316c7557cdd6895eb9be554a1835a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Payment method detail"
+                    },
+                    "404": {
+                        "description": "Payment method not found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Payment Methods"
+                ],
+                "summary": "Update payment method (use _method=PUT)",
+                "operationId": "a13aefd8a2523c51cca7fa71e3330358",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "_method",
+                                    "type"
+                                ],
+                                "properties": {
+                                    "_method": {
+                                        "type": "string",
+                                        "example": "PUT"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "bank_transfer",
+                                            "qris"
+                                        ],
+                                        "example": "bank_transfer"
+                                    },
+                                    "account_number": {
+                                        "type": "string",
+                                        "example": "1234567890"
+                                    },
+                                    "account_name": {
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "bank_name": {
+                                        "type": "string",
+                                        "example": "BCA"
+                                    },
+                                    "image": {
+                                        "description": "Upload payment image (png, jpg, webp)",
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Payment method updated successfully"
+                    },
+                    "404": {
+                        "description": "Payment method not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Payment Methods"
+                ],
+                "summary": "Delete payment method",
+                "operationId": "8841aaf7635f4f79bd309affeebd1707",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Payment method deleted successfully"
+                    },
+                    "404": {
+                        "description": "Payment method not found"
+                    }
+                }
+            }
+        },
         "/sliders": {
             "get": {
                 "tags": [
@@ -578,6 +769,72 @@
                     }
                 }
             }
+        },
+        "/users": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get list of users",
+                "operationId": "9456f74ab995d6e45602d63373640651",
+                "responses": {
+                    "200": {
+                        "description": "List of users"
+                    }
+                }
+            }
+        },
+        "/users/{id}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get user detail",
+                "operationId": "b3b212f44b59639f1e97b4062a304e15",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User detail"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Delete user",
+                "operationId": "a619fa1592715307feb6a8e63780e227",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User deleted successfully"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                }
+            }
         }
     },
     "tags": [
@@ -590,8 +847,16 @@
             "description": "Categories"
         },
         {
+            "name": "Payment Methods",
+            "description": "Payment Methods"
+        },
+        {
             "name": "Sliders",
             "description": "Sliders"
+        },
+        {
+            "name": "Users",
+            "description": "Users"
         }
     ]
 }

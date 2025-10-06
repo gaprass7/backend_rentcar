@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CarController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\PaymentMethodController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +24,5 @@ use App\Http\Controllers\Admin\SliderController;
 Route::apiResource('categories', CategoryController::class);
 Route::apiResource('cars', CarController::class);
 Route::apiResource('sliders', SliderController::class);
+Route::apiResource('users', UserController::class);
+Route::apiResource('payment-methods', PaymentMethodController::class);
