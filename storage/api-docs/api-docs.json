@@ -1156,6 +1156,183 @@
                 }
             }
         },
+        "/reviews": {
+            "get": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Get list of reviews",
+                "operationId": "ab114909e40d0fa10f3ac20f52a7b98f",
+                "responses": {
+                    "200": {
+                        "description": "List of reviews"
+                    }
+                }
+            }
+        },
+        "/site-settings": {
+            "get": {
+                "tags": [
+                    "Site Settings"
+                ],
+                "summary": "Ambil data pengaturan situs",
+                "description": "Mengambil data pengaturan situs seperti nama, logo, deskripsi, dan link media sosial.",
+                "operationId": "8311e860466b55de14ac95c6dbe9218d",
+                "responses": {
+                    "200": {
+                        "description": "Berhasil mengambil data pengaturan situs",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "site_name": {
+                                            "type": "string",
+                                            "example": "RentCar App"
+                                        },
+                                        "logo": {
+                                            "type": "string",
+                                            "example": "logos/logo.png"
+                                        },
+                                        "facebook_url": {
+                                            "type": "string",
+                                            "example": "https://facebook.com/rentcar"
+                                        },
+                                        "twitter_url": {
+                                            "type": "string",
+                                            "example": "https://twitter.com/rentcar"
+                                        },
+                                        "instagram_url": {
+                                            "type": "string",
+                                            "example": "https://instagram.com/rentcar"
+                                        },
+                                        "whatsapp_url": {
+                                            "type": "string",
+                                            "example": "https://wa.me/628123456789"
+                                        },
+                                        "location_embed_links": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "example": "https://maps.google.com/embed?pb=..."
+                                            }
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "Aplikasi penyewaan mobil terbaik di kota Anda."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/site-settings/update": {
+            "post": {
+                "tags": [
+                    "Site Settings"
+                ],
+                "summary": "Perbarui data pengaturan situs (use _method=PUT)",
+                "description": "Memperbarui informasi pengaturan situs termasuk nama, logo, deskripsi, dan tautan media sosial.",
+                "operationId": "74adf9b6f9eca9ea0c9c8a76a386804d",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "site_name",
+                                    "_method"
+                                ],
+                                "properties": {
+                                    "_method": {
+                                        "type": "string",
+                                        "example": "PUT"
+                                    },
+                                    "site_name": {
+                                        "type": "string",
+                                        "example": "RentCar App"
+                                    },
+                                    "logo": {
+                                        "description": "File logo (opsional)",
+                                        "type": "string",
+                                        "format": "binary"
+                                    },
+                                    "facebook_url": {
+                                        "type": "string",
+                                        "example": "https://facebook.com/rentcar"
+                                    },
+                                    "twitter_url": {
+                                        "type": "string",
+                                        "example": "https://twitter.com/rentcar"
+                                    },
+                                    "instagram_url": {
+                                        "type": "string",
+                                        "example": "https://instagram.com/rentcar"
+                                    },
+                                    "whatsapp_url": {
+                                        "type": "string",
+                                        "example": "https://wa.me/628123456789"
+                                    },
+                                    "location_embed_links": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "example": "https://maps.google.com/embed?pb=..."
+                                        }
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Aplikasi penyewaan mobil terpercaya."
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Berhasil memperbarui pengaturan situs",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Site settings updated successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "site_name": {
+                                                    "type": "string",
+                                                    "example": "RentCar App"
+                                                },
+                                                "logo": {
+                                                    "type": "string",
+                                                    "example": "logos/logo.png"
+                                                },
+                                                "facebook_url": {
+                                                    "type": "string",
+                                                    "example": "https://facebook.com/rentcar"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validasi gagal"
+                    }
+                }
+            }
+        },
         "/sliders": {
             "get": {
                 "tags": [
@@ -1390,6 +1567,14 @@
         {
             "name": "Payment Methods",
             "description": "Payment Methods"
+        },
+        {
+            "name": "Reviews",
+            "description": "Reviews"
+        },
+        {
+            "name": "Site Settings",
+            "description": "Site Settings"
         },
         {
             "name": "Sliders",

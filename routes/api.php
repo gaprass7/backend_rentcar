@@ -10,6 +10,9 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\PaymentMethodController;
 use App\Http\Controllers\Admin\RentalController;
 use App\Http\Controllers\Admin\AddonController;
+use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\SiteController;
+
 
 
 /*
@@ -31,3 +34,5 @@ Route::apiResource('users', UserController::class);
 Route::apiResource('payment-methods', PaymentMethodController::class);
 Route::apiResource('rentals', RentalController::class);
 Route::apiResource('addons', AddonController::class);
+Route::apiResource('reviews', ReviewController::class);
+Route::apiResource('site-settings', SiteController::class);
